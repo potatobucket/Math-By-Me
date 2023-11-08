@@ -42,13 +42,6 @@ places = [
     8_031_810_176
 ]
 
-# testNumber = 208_827_064_575
-# testNumber = 1371
-angel = 232659
-chris = 1048702
-oscar = 6715401
-whitney = 6883315372
-testNumber = 204567891234
 testString = "aaaaaaif somebody aaamakes aaaaaame aaaatran aaaslate aaaathis aaachris aaaaowes aaaaaame aaaafive adollars"
 
 def convert_to_alphabase(number):
