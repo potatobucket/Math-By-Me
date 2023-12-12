@@ -1,3 +1,4 @@
+myPi = 3.141592653589793
 square_root = lambda x: x ** 0.5
 
 class Vector2:
@@ -38,6 +39,10 @@ class Vector2:
     def __repr__(self):
         return f"Vector2({self.x}, {self.y})"
 
+def area_of_circle(radius = 2.0):
+    """Calculate the area of a circle with a given radius."""
+    return myPi * radius ** 2
+
 def average_die_throw(numberOfSides = 6, numberOfDice = 1):
     """Returns the average of a given number of dice of a given size."""
     averageForOneDie = (numberOfSides + 1) / 2
@@ -49,6 +54,10 @@ def binary_addition(*numbers):
     for number in numbers:
         total += number
     return bin(total)
+
+def circumference_of_circle(radius = 2.0):
+    """Calculate the circumference of a circle with a given radius."""
+    return 2 * myPi * radius
 
 def factorial(n):
     """Multiplies all integers from 1 to n (i.e. 1 * 2 * 3 * ... * n-2 * n-1 * n)"""
@@ -68,6 +77,35 @@ def hexadecimal_addition(*numbers):
     for number in numbers:
         total += number
     return hex(total)
+
+def mean(numbers = list()):
+    """Returns the average for a given set of numbers."""
+    sum = 0
+    for number in numbers:
+        sum += number
+    return sum / len(numbers)
+
+def median(numbers = list()):
+    """Returns the middle value for a given set of numbers."""
+    numbers.sort()
+    if len(numbers) % 2 == 1:
+        index = (len(numbers) // 2)
+        return numbers[index]
+    else:
+        indexA, indexB = int((len(numbers) / 2)), int((len(numbers) / 2) - 1)
+        return (numbers[indexA] + numbers[indexB]) / 2
+
+def mode(numbers = list()):
+    """Returns the most common number among a set of numbers."""
+    mostOccurances = 0
+    numberTracker = {}
+    for number in numbers:
+        numberCount = numbers.count(number)
+        numberTracker[f"{number}"] = numberCount
+        if numberCount > mostOccurances:
+            mostOccurances = numberCount
+    mostCommonNumber = [int(numberKey) for numberKey, numberValue in numberTracker.items() if numberValue == mostOccurances]
+    return mostCommonNumber
 
 def number_of_digits_in_the_product_of_n_to_the_power_of_n(n):
     """Returns the length of the product of n to the power of itself."""
