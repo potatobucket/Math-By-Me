@@ -42,7 +42,7 @@ places = [
     8_031_810_176
 ]
 
-testString = "aaaaaaif somebody aaamakes aaaaaame aaaatran aaaslate aaaathis aaachris aaaaowes aaaaaame aaaafive adollars"
+testString = "aaaasome aaatimes aaaaabad aathings aahappen aaaaaand aaaaawho aaaaayou aaagonna aaaacall"
 
 def convert_to_alphabase(number):
     """
