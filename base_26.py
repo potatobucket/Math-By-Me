@@ -90,9 +90,7 @@ Encodes a string of base-26 "numbers" to their base-10 equivalents and saves the
             secret.write(f"{encode} ")
 
 def decode(secret = "secret message.txt"):
-    """
-Decodes a secret message (defaults to a text file named "secret message.txt") from base-10 to base-26.
-    """
+    """Decodes a secret message (defaults to a text file named "secret message.txt") from base-10 to base-26."""
     with open(secret, "r") as decode:
         secretMessage = decode.read().split()
         decodedMessage = ""
