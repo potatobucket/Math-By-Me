@@ -1,3 +1,9 @@
+"""
+A module of mathematical classes and functions that were made without importing any\n
+libraries. This is being actively worked on as an exercise in coding.\n
+Note: some of it is stuff nobody would ever need ever I just wanted to do it.
+"""
+
 myPi = 3.141592653589793
 square_root = lambda x: x ** 0.5
 
@@ -34,18 +40,80 @@ class Vector2:
         if not isinstance(other, self.__class__):
             return NotImplemented
         return (self.x % other.x, self.y % other.y)
-    def __str__(self):
-        return f"({self.x}, {self.y})"
     def __repr__(self):
         return f"Vector2({self.x}, {self.y})"
+    def __str__(self):
+        return f"({self.x}, {self.y})"
 
-def area_of_circle(radius = 2.0):
-    """Calculate the area of a circle with a given radius."""
-    return myPi * radius ** 2
+class Circle:
+    """Handles all the math (that I can think of) that you might need for a circle."""
+    def __init__(self, radius = 2.0):
+        self.radius = radius
 
-def area_of_rectangle(length = 1, width = 1):
-    """Returns the area of a rectangle of given length and width."""
-    return length * width
+    @property
+    def area(self):
+        """Calculate the area of a circle with a given radius."""
+        return float(f"{myPi * self.radius ** 2:.4f}") #-- if anybody has a cleaner way to achieve this please let me know
+    
+    @property
+    def circumference(self):
+        """Calculate the circumference of a circle with a given radius."""
+        return float(f"{2 * myPi * self.radius:.4f}") #-- if anybody has a cleaner way to achieve this please let me know
+
+    @property
+    def diameter(self):
+        """Returns the diameter of a circle with a given radius."""
+        return self.radius * 2
+
+    def __repr__(self):
+        return f"Circle({self.radius})"
+    
+    def __str__(self):
+        return f"A circle of radius of {self.radius} units."
+
+class Rectangle:
+    """Handles all the math (that I can think of) that you might need for a rectangle."""
+    def __init__(self, length = 1, width = 1):
+        self.length = length
+        self.width = width
+
+    @property
+    def area(self):
+        """Returns the area of a rectangle of given length and width."""
+        return self.length * self.width
+    
+    @property
+    def diagonal(self):
+        """Returns the diagonal measurement of a rectangle of given length and width."""
+        return square_root(((self.length ** 2) + (self.width ** 2)))
+
+    @property
+    def perimeter(self):
+        """Returns the length of the perimeter of a rectangle of given length and width."""
+        return (self.length * 2) + (self.width * 2)
+    
+    def __repr__(self):
+        return f"Rectangle({self.length, self.width})"
+    
+    def __str__(self):
+        return f"A rectangle of length {self.length} units and width {self.width} units."
+
+class Triangle:
+    """Handles all the math (that I can think of) that you might need for a triangle."""
+    def __init__(self, base = 1.0, height = 1.0):
+        self.base = base
+        self.height = height
+
+    @property
+    def area(self):
+        """Returns the area of a triangle of given base length and height length."""
+        return float(f"{(self.base * self.height) / 2:.4f}") #-- if anybody has a cleaner way to achieve this please let me know
+    
+    def __repr__(self):
+        return f"Triangle({self.base}, {self.height})"
+    
+    def __str__(self):
+        return f"A triangle with a base length of {self.base} units and a height of {self.height} units."
 
 def average_die_throw(numberOfSides = 6, numberOfDice = 1):
     """Returns the average of a given number of dice of a given size."""
@@ -58,10 +126,6 @@ def binary_addition(*numbers):
     for number in numbers:
         total += number
     return bin(total)
-
-def circumference_of_circle(radius = 2.0):
-    """Calculate the circumference of a circle with a given radius."""
-    return 2 * myPi * radius
 
 def factorial(n):
     """Multiplies all integers from 1 to n (i.e. 1 * 2 * 3 * ... * n-2 * n-1 * n)"""
@@ -119,10 +183,6 @@ def octal_addition(*numbers):
     for number in numbers:
         total += number
     return oct(total)
-
-def perimeter_of_rectangle(length = 1, width = 1):
-    """Returns the length of the perimeter of a rectangle of given length and width."""
-    return (length * 2) + (width * 2)
 
 def sum_of_integers_up_to(n):
     """Adds all integers from 1 to n (i.e. 1 + 2 + 3 + ... + n-2 + n-1 + n)"""
