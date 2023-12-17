@@ -43,6 +43,10 @@ def area_of_circle(radius = 2.0):
     """Calculate the area of a circle with a given radius."""
     return myPi * radius ** 2
 
+def area_of_rectangle(length = 1, width = 1):
+    """Returns the area of a rectangle of given length and width."""
+    return length * width
+
 def average_die_throw(numberOfSides = 6, numberOfDice = 1):
     """Returns the average of a given number of dice of a given size."""
     averageForOneDie = (numberOfSides + 1) / 2
@@ -79,14 +83,14 @@ def hexadecimal_addition(*numbers):
     return hex(total)
 
 def mean(numbers = list()):
-    """Returns the average for a given set of numbers."""
+    """Returns the average for a given list of numbers."""
     sum = 0
     for number in numbers:
         sum += number
     return sum / len(numbers)
 
 def median(numbers = list()):
-    """Returns the middle value for a given set of numbers."""
+    """Returns the middle value for a given list of numbers."""
     numbers.sort()
     if len(numbers) % 2 == 1:
         index = (len(numbers) // 2)
@@ -96,14 +100,11 @@ def median(numbers = list()):
         return (numbers[indexA] + numbers[indexB]) / 2
 
 def mode(numbers = list()):
-    """Returns the most common number among a set of numbers."""
-    mostOccurances = 0
-    numberTracker = {}
-    for number in numbers:
-        numberCount = numbers.count(number)
-        numberTracker[f"{number}"] = numberCount
-        if numberCount > mostOccurances:
-            mostOccurances = numberCount
+    """Returns the most common number among a list of numbers."""
+    numberTracker = {f"{number}" : 0 for number in set(numbers)}
+    for numberElement in numbers:
+        numberTracker[f"{numberElement}"] += 1
+    mostOccurances = max(set(numberTracker.values()))
     mostCommonNumber = [int(numberKey) for numberKey, numberValue in numberTracker.items() if numberValue == mostOccurances]
     return mostCommonNumber
 
@@ -118,6 +119,10 @@ def octal_addition(*numbers):
     for number in numbers:
         total += number
     return oct(total)
+
+def perimeter_of_rectangle(length = 1, width = 1):
+    """Returns the length of the perimeter of a rectangle of given length and width."""
+    return (length * 2) + (width * 2)
 
 def sum_of_integers_up_to(n):
     """Adds all integers from 1 to n (i.e. 1 + 2 + 3 + ... + n-2 + n-1 + n)"""
