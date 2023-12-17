@@ -71,6 +71,51 @@ class Circle:
     def __str__(self):
         return f"A circle of radius of {self.radius} units."
 
+class NumericalStatistics:
+    """A class to handle all the statistics I can remember."""
+    def __init__(self, numbers = []):
+        self.numbers = numbers
+
+    @property
+    def mean(self):
+        """Returns the average for a given list of numbers."""
+        sum = 0
+        for number in self.numbers:
+            sum += number
+        return sum / len(self.numbers)
+    
+    @property
+    def median(self):
+        """Returns the middle value for a given list of numbers."""
+        self.numbers.sort()
+        if len(self.numbers) % 2 == 1:
+            index = (len(self.numbers) // 2)
+            return self.numbers[index]
+        else:
+            indexA, indexB = int((len(self.numbers) / 2)), int((len(self.numbers) / 2) - 1)
+            return (self.numbers[indexA] + self.numbers[indexB]) / 2
+        
+    @property
+    def mode(self):
+        """Returns the most common number among a list of numbers."""
+        numberTracker = {f"{number}" : 0 for number in set(self.numbers)}
+        for numberElement in self.numbers:
+            numberTracker[f"{numberElement}"] += 1
+        mostOccurances = max(set(numberTracker.values()))
+        mostCommonNumber = [int(numberKey) for numberKey, numberValue in numberTracker.items() if numberValue == mostOccurances]
+        return mostCommonNumber
+    
+    @property
+    def uniqueItems(self):
+        """Returns a set of unique items in the list of numbers."""
+        return set(self.numbers)
+    
+    def __repr__(self):
+        return f"NumericalStatistics({self.numbers})"
+    
+    def __str__(self):
+        return f"A list of numbers that includes the set {set(self.numbers)}."
+
 class Rectangle:
     """Handles all the math (that I can think of) that you might need for a rectangle."""
     def __init__(self, length = 1, width = 1):
@@ -145,32 +190,6 @@ def hexadecimal_addition(*numbers):
     for number in numbers:
         total += number
     return hex(total)
-
-def mean(numbers = list()):
-    """Returns the average for a given list of numbers."""
-    sum = 0
-    for number in numbers:
-        sum += number
-    return sum / len(numbers)
-
-def median(numbers = list()):
-    """Returns the middle value for a given list of numbers."""
-    numbers.sort()
-    if len(numbers) % 2 == 1:
-        index = (len(numbers) // 2)
-        return numbers[index]
-    else:
-        indexA, indexB = int((len(numbers) / 2)), int((len(numbers) / 2) - 1)
-        return (numbers[indexA] + numbers[indexB]) / 2
-
-def mode(numbers = list()):
-    """Returns the most common number among a list of numbers."""
-    numberTracker = {f"{number}" : 0 for number in set(numbers)}
-    for numberElement in numbers:
-        numberTracker[f"{numberElement}"] += 1
-    mostOccurances = max(set(numberTracker.values()))
-    mostCommonNumber = [int(numberKey) for numberKey, numberValue in numberTracker.items() if numberValue == mostOccurances]
-    return mostCommonNumber
 
 def number_of_digits_in_the_product_of_n_to_the_power_of_n(n):
     """Returns the length of the product of n to the power of itself."""
