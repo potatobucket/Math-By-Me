@@ -145,20 +145,23 @@ class Rectangle:
 
 class Triangle:
     """Handles all the math (that I can think of) that you might need for a triangle."""
-    def __init__(self, base = 1.0, height = 1.0):
-        self.base = base
-        self.height = height
+    def __init__(self, sideOne = 1.0, sideTwo = 1.0, sideThree = 1.0):
+        self.sideOne = sideOne
+        self.sideTwo = sideTwo
+        self.sideThree = sideThree
+        self.perimeter = sideOne + sideTwo + sideThree
+        self.semiperimeter = self.perimeter / 2
 
     @property
     def area(self):
         """Returns the area of a triangle of given base length and height length."""
-        return float(f"{(self.base * self.height) / 2:.4f}") #-- if anybody has a cleaner way to achieve this please let me know
+        return float(f"{square_root(self.semiperimeter * (self.semiperimeter - self.sideOne) * (self.semiperimeter - self.sideTwo) * (self.semiperimeter - self.sideThree)):.4f}") #-- if anybody has a cleaner way to achieve this please let me know
     
     def __repr__(self):
-        return f"Triangle({self.base}, {self.height})"
+        return f"Triangle({self.sideOne}, {self.sideTwo}, {self.sideThree})"
     
     def __str__(self):
-        return f"A triangle with a base length of {self.base} units and a height of {self.height} units."
+        return f"A triangle with side lengths of {self.sideOne}, {self.sideTwo}, {self.sideThree}."
 
 def average_die_throw(numberOfSides = 6, numberOfDice = 1):
     """Returns the average of a given number of dice of a given size."""
