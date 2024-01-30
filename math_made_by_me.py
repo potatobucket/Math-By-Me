@@ -131,6 +131,11 @@ class Rectangle:
     def diagonal(self):
         """Returns the diagonal measurement of a rectangle of given length and width."""
         return square_root(((self.length ** 2) + (self.width ** 2)))
+    
+    @property
+    def is_square(self):
+        """Is this rectangle a square?"""
+        return self.length == self.width
 
     @property
     def perimeter(self):
