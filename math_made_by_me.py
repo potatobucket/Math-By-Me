@@ -222,4 +222,4 @@ def x_to_the_power_of_y(x, y):
     return x ** y
 
 if __name__ == "__main__":
-    print(sum_of_integers_up_to(10000))
+    pass
