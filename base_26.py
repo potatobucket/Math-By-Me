@@ -98,6 +98,6 @@ def decode(secret = "secret message.txt"):
             decodedMessage += re.sub(r"\bA{,7}", "", convert_to_alphabase(int(secretMessage[code]))) + " "
     return decodedMessage
 
-if __name__ == "__main__":
-    encode(testString.upper())
-    print(decode())
+# if __name__ == "__main__":
+#     encode(testString.upper())
+#     print(decode())
