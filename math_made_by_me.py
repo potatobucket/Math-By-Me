@@ -220,6 +220,3 @@ def sum_of_integers_up_to(n):
 def x_to_the_power_of_y(x, y):
     """Returns the product of x to the power of y."""
     return x ** y
-
-if __name__ == "__main__":
-    pass
