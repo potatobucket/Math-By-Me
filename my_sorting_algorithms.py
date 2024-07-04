@@ -33,7 +33,8 @@ Swaps two elements of the given list at indexOne and indexTwo.
 
 def bubble_sort(listToSort):
     """
-Pretty standard bubble sort. Pass in a list to have it work its magic.
+Pretty standard bubble sort. Pass in a list to have it work its magic.\n
+Appears to be stable.
     """
     while is_sorted(listToSort) == False:
         for index,value in enumerate(listToSort):
