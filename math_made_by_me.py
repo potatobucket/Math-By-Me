@@ -110,6 +110,50 @@ class NumericalStatistics:
         """Returns a set of unique items in the list of numbers."""
         return set(self.numbers)
     
+    @property
+    def smallest_element(self):
+        """
+    Finds the smallest element in the list of numbers and returns the index and value of the element.\n
+    (Formatted as a tuple: (location, element))
+        """
+        location = 0
+        cycle = 0
+        smallestElement = None
+        for element in self.numbers:
+            if smallestElement == None:
+                location = cycle
+                smallestElement = element
+                cycle += 1
+            elif smallestElement != None and element < smallestElement:
+                location = cycle
+                smallestElement = element
+                cycle += 1
+            else:
+                cycle += 1
+        return location, smallestElement
+
+    @property
+    def largest_element(self):
+        """
+    Finds the largest element in the list of numbers and returns the index and value of the element.\n
+    (Formatted as a tuple: (location, element))
+        """
+        location = 0
+        cycle = 0
+        largestElement = None
+        for element in self.numbers:
+            if largestElement == None:
+                location = cycle
+                largestElement = element
+                cycle += 1
+            elif largestElement != None and element > largestElement:
+                location = cycle
+                largestElement = element
+                cycle += 1
+            else:
+                cycle += 1
+        return location, largestElement
+
     def __repr__(self):
         return f"NumericalStatistics({self.numbers})"
     
