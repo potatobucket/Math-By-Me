@@ -75,6 +75,7 @@ class NumericalStatistics:
     """A class to handle all the statistics I can remember."""
     def __init__(self, numbers = []):
         self.numbers = numbers
+        self.numberOfNumbers = len(numbers)
 
     @property
     def mean(self):
@@ -106,9 +107,26 @@ class NumericalStatistics:
         return mostCommonNumber
     
     @property
-    def uniqueItems(self):
-        """Returns a set of unique items in the list of numbers."""
-        return set(self.numbers)
+    def largest_element(self):
+        """
+    Finds the largest element in the list of numbers and returns the index and value of the element.\n
+    (Formatted as a tuple: (location, element))
+        """
+        location = 0
+        cycle = 0
+        largestElement = None
+        for element in self.numbers:
+            if largestElement == None:
+                location = cycle
+                largestElement = element
+                cycle += 1
+            elif largestElement != None and element > largestElement:
+                location = cycle
+                largestElement = element
+                cycle += 1
+            else:
+                cycle += 1
+        return location, largestElement
     
     @property
     def smallest_element(self):
@@ -133,27 +151,21 @@ class NumericalStatistics:
         return location, smallestElement
 
     @property
-    def largest_element(self):
+    def standard_deviation(self):
         """
-    Finds the largest element in the list of numbers and returns the index and value of the element.\n
-    (Formatted as a tuple: (location, element))
+    Returns the standard deviation of the given list of numbers.
         """
-        location = 0
-        cycle = 0
-        largestElement = None
-        for element in self.numbers:
-            if largestElement == None:
-                location = cycle
-                largestElement = element
-                cycle += 1
-            elif largestElement != None and element > largestElement:
-                location = cycle
-                largestElement = element
-                cycle += 1
-            else:
-                cycle += 1
-        return location, largestElement
+        average = self.mean
+        numerator = 0
+        for number in self.numbers:
+            numerator += (number - average) ** 2
+        return square_root(numerator / (self.numberOfNumbers - 1))
 
+    @property
+    def uniqueItems(self):
+        """Returns a set of unique items in the list of numbers."""
+        return set(self.numbers)
+    
     def __repr__(self):
         return f"NumericalStatistics({self.numbers})"
     
