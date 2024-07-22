@@ -83,17 +83,17 @@ class NumericalStatistics:
         sum = 0
         for number in self.numbers:
             sum += number
-        return sum / len(self.numbers)
+        return sum / self.numberOfNumbers
     
     @property
     def median(self):
         """Returns the middle value for a given list of numbers."""
         self.numbers.sort()
-        if len(self.numbers) % 2 == 1:
-            index = (len(self.numbers) // 2)
+        if self.numberOfNumbers % 2 == 1:
+            index = (self.numberOfNumbers // 2)
             return self.numbers[index]
         else:
-            indexA, indexB = int((len(self.numbers) / 2)), int((len(self.numbers) / 2) - 1)
+            indexA, indexB = int((self.numberOfNumbers / 2)), int((self.numberOfNumbers / 2) - 1)
             return (self.numbers[indexA] + self.numbers[indexB]) / 2
         
     @property
