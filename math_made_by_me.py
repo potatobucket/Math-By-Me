@@ -8,61 +8,12 @@ myPi = 3.141592653589793
 reciprocal = lambda x: x ** -1
 square_root = lambda x: x ** 0.5
 
-class Vector2:
-    """An attempt to recreate the Vector2 class from Godot in Python for more or less educational purposes."""
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    @property
-    def gradient(self):
-        return self.y / self.x
-
-    def __add__(self, other):
-        if not isinstance(other, self.__class__):
-            return NotImplemented
-        return (self.x + other.x, self.y + other.y)
-    
-    def __sub__(self, other):
-        if not isinstance(other, self.__class__):
-            return NotImplemented
-        return (self.x - other.x, self.y - other.y)
-    
-    def __mul__(self, other):
-        if not isinstance(other, self.__class__):
-            return NotImplemented
-        return (self.x * other.x, self.y * other.y)
-    
-    def __floordiv__(self, other):
-        if not isinstance(other, self.__class__):
-            return NotImplemented
-        return (self.x // other.x, self.y // other.y)
-    
-    def __truediv__(self, other):
-        if not isinstance(other, self.__class__):
-            return NotImplemented
-        return (self.x / other.x, self.y / other.y)
-    
-    def __pow__(self, other):
-        if not isinstance(other, self.__class__):
-            return NotImplemented
-        return (self.x ** other.x, self.y ** other.y)
-    
-    def __mod__(self, other):
-        if not isinstance(other, self.__class__):
-            return NotImplemented
-        return (self.x % other.x, self.y % other.y)
-    
-    def __repr__(self):
-        return f"Vector2({self.x}, {self.y})"
-    
-    def __str__(self):
-        return f"({self.x}, {self.y})"
-
 class Circle:
     """Handles all the math (that I can think of) that you might need for a circle."""
     def __init__(self, radius = 2.0):
         self.radius = radius
+        self.curvature = 1 / self.radius
+        self.diameter = self.radius * 2
 
     @property
     def area(self):
@@ -74,22 +25,18 @@ class Circle:
         """Calculate the circumference of a circle with a given radius."""
         return float(f"{2 * myPi * self.radius:.4f}") #-- if anybody has a cleaner way to achieve this please let me know
 
-    @property
-    def diameter(self):
-        """Returns the diameter of a circle with a given radius."""
-        return self.radius * 2
-
     def __repr__(self):
         return f"Circle({self.radius})"
     
     def __str__(self):
-        return f"A circle of radius of {self.radius} units."
+        return f"A circle of radius {self.radius} units."
 
 class NumericalStatistics:
     """A class to handle all the statistics I can remember."""
     def __init__(self, numbers = []):
         self.numbers = numbers
         self.numberOfNumbers = len(numbers)
+        self.uniqueNumbers = set(self.numbers)
 
     @property
     def mean(self):
@@ -175,11 +122,6 @@ class NumericalStatistics:
             numerator += (number - average) ** 2
         return square_root(numerator / (self.numberOfNumbers - 1))
 
-    @property
-    def uniqueItems(self):
-        """Returns a set of unique items in the list of numbers."""
-        return set(self.numbers)
-    
     def __repr__(self):
         return f"NumericalStatistics({self.numbers})"
     
@@ -191,27 +133,15 @@ class Rectangle:
     def __init__(self, length = 1, width = 1):
         self.length = length
         self.width = width
+        self.area = self.length * self.width
+        self.diagonal = square_root(((self.length ** 2) + (self.width ** 2)))
+        self.perimeter = (self.length * 2) + (self.width * 2)
 
-    @property
-    def area(self):
-        """Returns the area of a rectangle of given length and width."""
-        return self.length * self.width
-    
-    @property
-    def diagonal(self):
-        """Returns the diagonal measurement of a rectangle of given length and width."""
-        return square_root(((self.length ** 2) + (self.width ** 2)))
-    
     @property
     def is_square(self):
         """Is this rectangle a square?"""
         return self.length == self.width
 
-    @property
-    def perimeter(self):
-        """Returns the length of the perimeter of a rectangle of given length and width."""
-        return (self.length * 2) + (self.width * 2)
-    
     def __repr__(self):
         return f"Rectangle({self.length, self.width})"
     
@@ -234,9 +164,57 @@ class Triangle:
     
     def __repr__(self):
         return f"Triangle({self.sideOne}, {self.sideTwo}, {self.sideThree})"
-    
+
     def __str__(self):
         return f"A triangle with side lengths of {self.sideOne}, {self.sideTwo}, {self.sideThree}."
+
+class Vector2:
+    """An attempt to recreate the Vector2 class from Godot in Python for more or less educational purposes."""
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.gradient = self.y / self.x
+
+    def __add__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return (self.x + other.x, self.y + other.y)
+    
+    def __sub__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return (self.x - other.x, self.y - other.y)
+    
+    def __mul__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return (self.x * other.x, self.y * other.y)
+    
+    def __floordiv__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return (self.x // other.x, self.y // other.y)
+    
+    def __truediv__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return (self.x / other.x, self.y / other.y)
+    
+    def __pow__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return (self.x ** other.x, self.y ** other.y)
+    
+    def __mod__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return (self.x % other.x, self.y % other.y)
+    
+    def __repr__(self):
+        return f"Vector2({self.x}, {self.y})"
+    
+    def __str__(self):
+        return f"({self.x}, {self.y})"
 
 def average_die_throw(numberOfSides = 6, numberOfDice = 1):
     """Returns the average of a given number of dice of a given size."""
