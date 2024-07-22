@@ -5,6 +5,7 @@ Note: some of it is stuff nobody would ever need ever I just wanted to do it.
 """
 
 myPi = 3.141592653589793
+reciprocal = lambda x: x ** -1
 square_root = lambda x: x ** 0.5
 
 class Vector2:
@@ -12,36 +13,49 @@ class Vector2:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+
+    @property
+    def gradient(self):
+        return self.y / self.x
+
     def __add__(self, other):
         if not isinstance(other, self.__class__):
             return NotImplemented
         return (self.x + other.x, self.y + other.y)
+    
     def __sub__(self, other):
         if not isinstance(other, self.__class__):
             return NotImplemented
         return (self.x - other.x, self.y - other.y)
+    
     def __mul__(self, other):
         if not isinstance(other, self.__class__):
             return NotImplemented
         return (self.x * other.x, self.y * other.y)
+    
     def __floordiv__(self, other):
         if not isinstance(other, self.__class__):
             return NotImplemented
         return (self.x // other.x, self.y // other.y)
+    
     def __truediv__(self, other):
         if not isinstance(other, self.__class__):
             return NotImplemented
         return (self.x / other.x, self.y / other.y)
+    
     def __pow__(self, other):
         if not isinstance(other, self.__class__):
             return NotImplemented
         return (self.x ** other.x, self.y ** other.y)
+    
     def __mod__(self, other):
         if not isinstance(other, self.__class__):
             return NotImplemented
         return (self.x % other.x, self.y % other.y)
+    
     def __repr__(self):
         return f"Vector2({self.x}, {self.y})"
+    
     def __str__(self):
         return f"({self.x}, {self.y})"
 
