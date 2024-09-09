@@ -247,6 +247,11 @@ def hexadecimal_addition(*numbers):
         total += number
     return hex(total)
 
+def linear_feedback_eight_bit(seedNumber):
+    bit = (seedNumber ^ (seedNumber >> 2) ^ (seedNumber >> 3) ^ (seedNumber >> 4)) & 1
+    newNumber = (seedNumber >> 1) | (bit << 7)
+    return newNumber
+
 def number_of_digits_in_the_product_of_n_to_the_power_of_n(n):
     """Returns the length of the product of n to the power of itself."""
     n = n ** n
