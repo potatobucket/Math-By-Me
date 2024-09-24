@@ -4,13 +4,13 @@ libraries. This is being actively worked on as an exercise in coding.\n
 Note: some of it is stuff nobody would ever need ever I just wanted to do it.
 """
 
-myPi = 3.141592653589793
-reciprocal = lambda x: x ** -1
-square_root = lambda x: x ** 0.5
+myPi: float = 3.141592653589793
+reciprocal: int|float = lambda x: x ** -1
+square_root: int|float = lambda x: x ** 0.5
 
 class Circle:
     """Handles all the math (that I can think of) that you might need for a circle."""
-    def __init__(self, radius = 2.0):
+    def __init__(self, radius: float = 2.0):
         self.radius = radius
         self.curvature = 1 / self.radius
         self.diameter = self.radius * 2
@@ -33,7 +33,7 @@ class Circle:
 
 class NumericalStatistics:
     """A class to handle all the statistics I can remember."""
-    def __init__(self, numbers = []):
+    def __init__(self, numbers: list = []):
         self.numbers = numbers
         self.numberOfNumbers = len(numbers)
         self.uniqueNumbers = set(self.numbers)
@@ -130,7 +130,7 @@ class NumericalStatistics:
 
 class Rectangle:
     """Handles all the math (that I can think of) that you might need for a rectangle."""
-    def __init__(self, length = 1, width = 1):
+    def __init__(self, length: float = 1.0, width: float = 1.0):
         self.length = length
         self.width = width
         self.area = self.length * self.width
@@ -150,7 +150,7 @@ class Rectangle:
 
 class Triangle:
     """Handles all the math (that I can think of) that you might need for a triangle."""
-    def __init__(self, sideOne = 1.0, sideTwo = 1.0, sideThree = 1.0):
+    def __init__(self, sideOne: float = 1.0, sideTwo: float = 1.0, sideThree: float = 1.0):
         self.sideOne = sideOne
         self.sideTwo = sideTwo
         self.sideThree = sideThree
@@ -170,7 +170,7 @@ class Triangle:
 
 class Vector2:
     """An attempt to recreate the Vector2 class from Godot in Python for more or less educational purposes."""
-    def __init__(self, x, y):
+    def __init__(self, x: float, y: float):
         self.x = x
         self.y = y
         self.gradient = self.y / self.x
@@ -216,19 +216,19 @@ class Vector2:
     def __str__(self):
         return f"({self.x}, {self.y})"
 
-def average_die_throw(numberOfSides = 6, numberOfDice = 1):
+def average_die_throw(numberOfSides: int = 6, numberOfDice: int = 1):
     """Returns the average of a given number of dice of a given size."""
     averageForOneDie = (numberOfSides + 1) / 2
     return averageForOneDie * numberOfDice
 
-def binary_addition(*numbers):
+def binary_addition(*numbers: int):
     """Adds decimal numbers and returns the sum in binary."""
     total = 0
     for number in numbers:
         total += number
     return bin(total)
 
-def factorial(n):
+def factorial(n: int):
     """Multiplies all integers from 1 to n (i.e. 1 * 2 * 3 * ... * n-2 * n-1 * n)"""
     if n == 0:
         n = 1
@@ -240,36 +240,36 @@ def golden_ratio():
     """Returns an approximation of the golden ratio."""
     return ((1 + square_root(5)) / 2)
 
-def hexadecimal_addition(*numbers):
+def hexadecimal_addition(*numbers: int):
     """Adds decimal numbers and returns the sum in hexidecimal."""
     total = 0
     for number in numbers:
         total += number
     return hex(total)
 
-def linear_feedback_eight_bit(seedNumber):
+def linear_feedback_eight_bit(seedNumber: int):
     bit = (seedNumber ^ (seedNumber >> 2) ^ (seedNumber >> 3) ^ (seedNumber >> 4)) & 1
     newNumber = (seedNumber >> 1) | (bit << 7)
     return newNumber
 
-def number_of_digits_in_the_product_of_n_to_the_power_of_n(n):
+def number_of_digits_in_the_product_of_n_to_the_power_of_n(n: int):
     """Returns the length of the product of n to the power of itself."""
     n = n ** n
     return len(str(n))
 
-def octal_addition(*numbers):
+def octal_addition(*numbers: int):
     """Adds decimal numbers and returns the sum in octal."""
     total = 0
     for number in numbers:
         total += number
     return oct(total)
 
-def sum_of_integers_up_to(n):
+def sum_of_integers_up_to(n: int):
     """Adds all integers from 1 to n (i.e. 1 + 2 + 3 + ... + n-2 + n-1 + n)"""
     for i in range(1, n):
         n += i
     return n
 
-def x_to_the_power_of_y(x, y):
+def x_to_the_power_of_y(x: float, y: float):
     """Returns the product of x to the power of y."""
     return x ** y

@@ -1,6 +1,6 @@
 import random as rnd #-- will be removed as soon as I can work out random number generation
 
-def diy_shuffle(listToShuffle):
+def diy_shuffle(listToShuffle: list):
     """
 Shuffles the given list well enough for my tastes.
     """
@@ -12,7 +12,7 @@ Shuffles the given list well enough for my tastes.
         last = rnd.randint(-1, length)
         swap_elements(listToShuffle, first, last)
 
-def is_sorted(listToCheck):
+def is_sorted(listToCheck: list):
     """
 Checks to see if given list is sorted.
     """
@@ -21,7 +21,7 @@ Checks to see if given list is sorted.
             return False
     return True
 
-def swap_elements(listToRearrange, indexOne, indexTwo):
+def swap_elements(listToRearrange: list, indexOne: int, indexTwo: int):
     """
 Swaps two elements of the given list at indexOne and indexTwo.
     """
@@ -31,7 +31,7 @@ Swaps two elements of the given list at indexOne and indexTwo.
     listToRearrange[indexTwo] = x
     return listToRearrange
 
-def bubble_sort(listToSort):
+def bubble_sort(listToSort: list):
     """
 Pretty standard bubble sort. Pass in a list to have it work its magic.\n
 Appears to be stable.
@@ -42,7 +42,7 @@ Appears to be stable.
                 if value > listToSort[index + 1]:
                     swap_elements(listToSort, index, index + 1)
 
-def bogo_sort(listToSort):
+def bogo_sort(listToSort: list):
     """
 Unlike true BOGO sort, this only shuffles and checks the given list once.\n
 It will let you know if it worked, though.
