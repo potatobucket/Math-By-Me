@@ -1,6 +1,6 @@
 import re
 
-base26 = {
+base26: dict = {
     0 : "A",
     1 : "B",
     2 : "C",
@@ -28,10 +28,10 @@ base26 = {
     24 : "Y",
     25 : "Z",
 }
-alphabet = {
+alphabet: dict = {
     v : k for k, v in base26.items()
 }
-places = [
+places: list = [
     1,
     26,
     676,
@@ -42,9 +42,9 @@ places = [
     8_031_810_176
 ]
 
-testString = "aaaasome aaatimes aaaaabad aathings aahappen aaaaaand aaaaawho aaaaayou aaagonna aaaacall"
+testString: str = "aaaasome aaatimes aaaaabad aathings aahappen aaaaaand aaaaawho aaaaayou aaagonna aaaacall"
 
-def convert_to_alphabase(number):
+def convert_to_alphabase(number: int):
     """
 Takes a decimal number and converts it to base-26 (a system where every digit is a letter A-Z of the standard Latin alphabet).
 \nThe result will be a string eight digits long with leading As filling up space as needed. (ex. AAAAHOPE)
@@ -64,7 +64,7 @@ Takes a decimal number and converts it to base-26 (a system where every digit is
             f"{base26[place8_031_810_176]}{base26[place308_915_776]}{base26[place11_881_376]}{base26[place456_976]}{base26[place17_576]}{base26[place676]}{base26[place26]}{base26[place1]}"
             )
 
-def convert_alpha_to_decimal(number):
+def convert_alpha_to_decimal(number: int):
     """
 Returns a "number" of base-26 in its base-10 form.
 \nThe number must be in the format of eight digits with leading As as needed (ex. AAAAHOPE)
@@ -78,7 +78,7 @@ Returns a "number" of base-26 in its base-10 form.
             total += alphabet[digit] * 26 ** ((dIndex - 7) * -1)
         return total
 
-def encode(string, filename = "secret message.txt"):
+def encode(string: str, filename: str = "secret message.txt"):
     """
 Encodes a string of base-26 "numbers" to their base-10 equivalents and saves them in a text file saved as filename.
 \n(Default filename = "secret message.txt")
@@ -89,7 +89,7 @@ Encodes a string of base-26 "numbers" to their base-10 equivalents and saves the
         for encode in convertedMessage:
             secret.write(f"{encode} ")
 
-def decode(secret = "secret message.txt"):
+def decode(secret: str = "secret message.txt"):
     """Decodes a secret message (defaults to a text file named "secret message.txt") from base-10 to base-26."""
     with open(secret, "r") as decode:
         secretMessage = decode.read().split()
