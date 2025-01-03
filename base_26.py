@@ -26,11 +26,13 @@ base26: dict = {
     22 : "W",
     23 : "X",
     24 : "Y",
-    25 : "Z",
+    25 : "Z"
 }
+
 alphabet: dict = {
     v : k for k, v in base26.items()
 }
+
 places: list = [
     1,
     26,
@@ -42,12 +44,11 @@ places: list = [
     8_031_810_176
 ]
 
-testString: str = "aaaasome aaatimes aaaaabad aathings aahappen aaaaaand aaaaawho aaaaayou aaagonna aaaacall"
+testString: str = "some times bad things happen and who you gonna call"
 
 def convert_to_alphabase(number: int):
     """
 Takes a decimal number and converts it to base-26 (a system where every digit is a letter A-Z of the standard Latin alphabet).
-\nThe result will be a string eight digits long with leading As filling up space as needed. (ex. AAAAHOPE)
     """
     if number > 208_827_064_575:
         return "Error: number too big"
@@ -64,18 +65,24 @@ Takes a decimal number and converts it to base-26 (a system where every digit is
             f"{base26[place8_031_810_176]}{base26[place308_915_776]}{base26[place11_881_376]}{base26[place456_976]}{base26[place17_576]}{base26[place676]}{base26[place26]}{base26[place1]}"
             )
 
-def convert_alpha_to_decimal(number: int):
+def convert_alpha_to_decimal(number: str):
     """
-Returns a "number" of base-26 in its base-10 form.
-\nThe number must be in the format of eight digits with leading As as needed (ex. AAAAHOPE)
+Returns a "number" of base-26 in its base-10 form.\n
+Should be eight letters or less.
     """
-    if len(number) != 8:
-        print("Error: alphabase string should be in the format AAAAAAAA (that's eight digits with leading As)")
+    
+    number = number.rjust(8, "*").upper()
+
+    if len(number) > 8:
+        print("Error: number must be shorter than 8 digits!")
     else:
-        total = 0
+        total: int = 0
         number = [letter for letter in number]
         for dIndex, digit in enumerate(number):
-            total += alphabet[digit] * 26 ** ((dIndex - 7) * -1)
+            if digit == "*":
+                total += 0
+            else:
+                total += alphabet[digit] * 26 ** ((dIndex - 7) * -1)
         return total
 
 def encode(string: str, filename: str = "secret message.txt"):
@@ -83,6 +90,9 @@ def encode(string: str, filename: str = "secret message.txt"):
 Encodes a string of base-26 "numbers" to their base-10 equivalents and saves them in a text file saved as filename.
 \n(Default filename = "secret message.txt")
     """
+
+    string = string.upper()
+
     with open(filename, "w") as secret:
         splitString = string.split()
         convertedMessage = [convert_alpha_to_decimal(word) for word in splitString]
@@ -97,3 +107,6 @@ def decode(secret: str = "secret message.txt"):
         for code in range(len(secretMessage)):
             decodedMessage += re.sub(r"\bA{,7}", "", convert_to_alphabase(int(secretMessage[code]))) + " "
     return decodedMessage
+
+if __name__ == "__main__":
+    encode(testString)

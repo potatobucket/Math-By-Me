@@ -174,7 +174,7 @@ poetry.toml
 pyrightconfig.json
 
 secret message.txt
-test.py
+test*.*
 
 # End of https://www.toptal.com/developers/gitignore/api/python
 random_numbers.txt
