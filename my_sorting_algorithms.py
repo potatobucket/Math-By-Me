@@ -1,3 +1,7 @@
+"""
+Various and sundry sorting and search algorithms.
+"""
+
 import random as rnd #-- will be removed as soon as I can work out random number generation
 
 def diy_shuffle(listToShuffle: list):
@@ -53,3 +57,55 @@ It will let you know if it worked, though.
         return True
     else:
         return False
+
+def binary_search(query: int | float | str, searchableList: list, queryIndex: int | None = None):
+    """
+Performs a binary search for the given query in the given iterable searchableList.
+    """
+    searchableList = sorted(searchableList) #-- eventually I'll create a more beefy sort algorithm and I can use that instead of sorted()
+    listLength: int = len(searchableList)
+    halfwayPoint: int = int(listLength / 2)
+    if queryIndex == None:
+        queryIndex = halfwayPoint
+
+    if query < searchableList[0] or query > searchableList[-1]:
+        return False, None
+
+    if listLength == 1 and searchableList[halfwayPoint] != query:
+        return False, None
+    elif query == searchableList[halfwayPoint]:
+        return True, queryIndex
+    elif query < searchableList[halfwayPoint]:
+        searchableRange: list = searchableList[:halfwayPoint]
+        newHalfwayPoint: int = round_up(len(searchableRange) / 2)
+        queryIndex -= newHalfwayPoint
+        return binary_search(query, searchableRange, queryIndex)
+    elif query > searchableList[halfwayPoint]:
+        searchableRange: list = searchableList[halfwayPoint:]
+        newHalfwayPoint: int = round_down(len(searchableRange) / 2)
+        queryIndex += newHalfwayPoint
+        return binary_search(query, searchableRange, queryIndex)
+
+def round_up(number: int | float):
+    """
+Adds 0.5 to a number if it ends in .5 itself (i.e. 3.5).\n
+A helper function to the binary_search function.
+    """
+    if type(number) == int:
+        return number
+    elif number % 1 == 0:
+        return int(number)
+    else:
+        return int(number + 0.5)
+
+def round_down(number: int | float):
+    """
+Subtracts 0.5 from a number if it ends in .5 itself (i.e. 3.5).\n
+A helper function to the binary_search function.
+    """
+    if type(number) == int:
+        return number
+    elif number % 1 == 0:
+        return int(number)
+    else:
+        return int(number - 0.5)
