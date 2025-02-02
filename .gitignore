@@ -175,6 +175,7 @@ pyrightconfig.json
 
 secret message.txt
 test*.*
+Old Tests
 
 # End of https://www.toptal.com/developers/gitignore/api/python
 random_numbers.txt

@@ -88,24 +88,20 @@ Performs a binary search for the given query in the given iterable searchableLis
 
 def round_up(number: int | float):
     """
-Adds 0.5 to a number if it ends in .5 itself (i.e. 3.5).\n
+Rounds a float up to the nearest integer.\n
 A helper function to the binary_search function.
     """
+    decimal = number % 1
     if type(number) == int:
         return number
     elif number % 1 == 0:
         return int(number)
     else:
-        return int(number + 0.5)
+        return int(number + (1 - decimal))
 
 def round_down(number: int | float):
     """
-Subtracts 0.5 from a number if it ends in .5 itself (i.e. 3.5).\n
+Rounds a float down to the nearest integer.\n
 A helper function to the binary_search function.
     """
-    if type(number) == int:
-        return number
-    elif number % 1 == 0:
-        return int(number)
-    else:
-        return int(number - 0.5)
+    return int(number)
