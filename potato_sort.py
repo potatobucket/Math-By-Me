@@ -66,3 +66,23 @@ A helper function to merge sort. Merges two lists together in order.
         return rightArray + leftArray
     else:
         return leftArray + rightArray
+
+def quick_sort(listToSort, start, end):
+    if end <= start:
+        return
+    
+    pivot = quick_sort_partition(listToSort, start, end)
+    quick_sort(listToSort, start, pivot - 1)
+    quick_sort(listToSort, pivot + 1, end)
+
+def quick_sort_partition(listToSort, start, end):
+    pivot = listToSort[end]
+    listLength = len(listToSort)
+    i = start - 1
+    for j in range(start, listLength - 1):
+        if listToSort[j] < pivot:
+            i += 1
+            swap_elements(listToSort, j, i)
+    i += 1
+    swap_elements(listToSort, i, end)
+    return i
