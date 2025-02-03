@@ -228,6 +228,10 @@ def binary_addition(*numbers: int):
         total += number
     return bin(total)
 
+def cannonball_number_check(numberOfLayersOfCannonballs: int):
+    numerator: int = numberOfLayersOfCannonballs * (numberOfLayersOfCannonballs + 1) * (2 * numberOfLayersOfCannonballs + 1)
+    return numerator // 6
+
 def factorial(n: int):
     """Multiplies all integers from 1 to n (i.e. 1 * 2 * 3 * ... * n-2 * n-1 * n)"""
     if n == 0:
