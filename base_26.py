@@ -1,5 +1,5 @@
 """
-Possibly the dumbest excersize known to man.\n
+Possibly the dumbest exercize known to man.\n
 Encodes a string into a base-10 number (as a secret message cypher)\n
 and decodes it back into regular letter-based words.
 """

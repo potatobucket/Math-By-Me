@@ -67,7 +67,10 @@ A helper function to merge sort. Merges two lists together in order.
     else:
         return leftArray + rightArray
 
-def quick_sort(listToSort, start, end):
+def quick_sort(listToSort: list, start: int, end: int):
+    """
+It's quicker than bubble sort! On average, though, it's slower than Python's built-in sort function.
+    """
     if end <= start:
         return
     
@@ -75,14 +78,17 @@ def quick_sort(listToSort, start, end):
     quick_sort(listToSort, start, pivot - 1)
     quick_sort(listToSort, pivot + 1, end)
 
-def quick_sort_partition(listToSort, start, end):
+def quick_sort_partition(listToSort: list, start: int, end: int):
+    """
+A helper function for quick sort.
+    """
     pivot = listToSort[end]
     listLength = len(listToSort)
-    i = start - 1
-    for j in range(start, listLength - 1):
-        if listToSort[j] < pivot:
-            i += 1
-            swap_elements(listToSort, j, i)
-    i += 1
-    swap_elements(listToSort, i, end)
-    return i
+    swapper = start - 1
+    for check in range(start, listLength - 1):
+        if listToSort[check] < pivot:
+            swapper += 1
+            swap_elements(listToSort, check, swapper)
+    swapper += 1
+    swap_elements(listToSort, swapper, end)
+    return swapper

@@ -25,6 +25,26 @@ class Circle:
         """Calculate the circumference of a circle with a given radius."""
         return float(f"{2 * myPi * self.radius:.4f}") #-- if anybody has a cleaner way to achieve this please let me know
 
+    def __add__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return self.area + other.area
+    
+    def __sub__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return self.area - other.area
+
+    def __gt__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return self.area > other.area
+    
+    def __lt__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return self.area < other.area
+
     def __repr__(self):
         return f"Circle({self.radius})"
     
@@ -142,6 +162,26 @@ class Rectangle:
         """Is this rectangle a square?"""
         return self.length == self.width
 
+    def __add__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return self.area + other.area
+    
+    def __sub__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return self.area - other.area
+
+    def __gt__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return self.area > other.area
+    
+    def __lt__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return self.area < other.area
+
     def __repr__(self):
         return f"Rectangle({self.length, self.width})"
     
@@ -161,6 +201,26 @@ class Triangle:
     def area(self):
         """Returns the area of a triangle of given base length and height length."""
         return float(f"{square_root(self.semiperimeter * (self.semiperimeter - self.sideOne) * (self.semiperimeter - self.sideTwo) * (self.semiperimeter - self.sideThree)):.4f}") #-- if anybody has a cleaner way to achieve this please let me know
+
+    def __add__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return self.area + other.area
+    
+    def __sub__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return self.area - other.area
+
+    def __gt__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return self.area > other.area
+    
+    def __lt__(self, other):
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return self.area < other.area
     
     def __repr__(self):
         return f"Triangle({self.sideOne}, {self.sideTwo}, {self.sideThree})"

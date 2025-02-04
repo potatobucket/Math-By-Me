@@ -6,7 +6,7 @@ def binary_search(query: int | float | str, searchableList: list, queryIndex: in
     """
 Performs a binary search for the given query in the given iterable searchableList.
     """
-    searchableList = sorted(searchableList) #-- eventually I'll create a more beefy sort algorithm and I can use that instead of sorted()
+    searchableList.sort() #-- eventually I'll create a more beefy sort algorithm and I can use that instead of sorted()
     listLength: int = len(searchableList)
     halfwayPoint: int = int(listLength / 2)
     if queryIndex == None:
