@@ -50,7 +50,7 @@ places: list = [
     8_031_810_176
 ]
 
-testString: str = "some times bad things happen and who you gonna call"
+testString: str = "this is a test of the base twenty six encoding algorithm"
 
 def convert_to_alphabase(number: int):
     """
