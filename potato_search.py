@@ -2,6 +2,8 @@
 Various and sundry search algorithms.
 """
 
+import custom_exceptions
+
 def binary_search(query: int | float | str, searchableList: list, queryIndex: int | None = None):
     """
 Performs a binary search for the given query in the given iterable searchableList.
@@ -9,6 +11,10 @@ Performs a binary search for the given query in the given iterable searchableLis
     searchableList.sort() #-- eventually I'll create a more beefy sort algorithm and I can use that instead of sorted()
     listLength: int = len(searchableList)
     halfwayPoint: int = int(listLength / 2)
+
+    if listLength < 1:
+        raise custom_exceptions.ListTooSmall(f"The list has {listLength} elements.")
+
     if queryIndex == None:
         queryIndex = halfwayPoint
 
