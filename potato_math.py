@@ -4,6 +4,7 @@ libraries. This is being actively worked on as an exercise in coding.\n
 Note: some of it is stuff nobody would ever need ever I just wanted to do it.
 """
 
+myEulerConstant: float = 0.577215665
 myPi: float = 3.141592653589793
 reciprocal: int|float = lambda x: x ** -1
 square_root: int|float = lambda x: x ** 0.5
