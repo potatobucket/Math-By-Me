@@ -312,6 +312,9 @@ def hexadecimal_addition(*numbers: int):
         total += number
     return hex(total)
 
+def is_divisible_by(numberToCheck: int, divisor: int):
+    return True if numberToCheck % divisor == 0 else False
+
 def linear_feedback_eight_bit(seedNumber: int):
     bit = (seedNumber ^ (seedNumber >> 2) ^ (seedNumber >> 3) ^ (seedNumber >> 4)) & 1
     newNumber = (seedNumber >> 1) | (bit << 7)
