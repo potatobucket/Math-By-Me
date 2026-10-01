@@ -315,6 +315,11 @@ def hexadecimal_addition(*numbers: int):
 def is_divisible_by(numberToCheck: int, divisor: int):
     return True if numberToCheck % divisor == 0 else False
 
+def lerp(value: float, startRangeX: float, startRangeY: float, targetRangeX: float, targetRangeY: float):
+    """Perform linear interpolation for <value> between (startRangeX, startRangeY) and (targetRangeX, targetRangeY)."""
+
+    return ((targetRangeY - targetRangeX) * value + startRangeY * targetRangeX - startRangeX * targetRangeY) / (startRangeY - startRangeX)
+
 def linear_feedback_eight_bit(seedNumber: int):
     bit = (seedNumber ^ (seedNumber >> 2) ^ (seedNumber >> 3) ^ (seedNumber >> 4)) & 1
     newNumber = (seedNumber >> 1) | (bit << 7)
